@@ -11,7 +11,7 @@ function App() {
   <li><Link to='/'>Home</Link></li>
   <li id="cart"><Link to='/cart'>Cart</Link></li>
 </ul>
-  <div class="App">
+  <div className="App">
     <Switch>
       <Route exact path='/' component={itemList}></Route>
       <Route exact path='/cart' component={Example}></Route>
