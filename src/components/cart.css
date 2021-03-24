@@ -1,0 +1,13 @@
+table, td, th {
+    border: 1px solid black;
+  }
+  
+  table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+
+  #remove {
+      background: crimson;
+      font-size: small;
+  }
