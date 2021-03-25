@@ -5,7 +5,7 @@ function ItemList(props) {
     
         const [items, setItem] = useState([{itemcode: 0, name: 'TV', price: '80000', image: 'https://i.gadgets360cdn.com/products/large/oneplus-tv-q1-pro-800x552-1569512163.jpg?downsize=*:180&output-quality=80&output-format=webp', quantity: 1 }, 
         {itemcode: 1, name: 'Phone', price:'40000', image: 'https://i.gadgets360cdn.com/large/oneplus_9_pro_image_1616073743295.jpg?downsize=950:*&output-quality=80&output-format=webp', quantity: 1},
-        {itemcode: 2, name: 'Little Women(Blu-Ray)', price:'400', image: 'http://www.impawards.com/2019/posters/little_women_xlg.jpg', quantity: 1}
+        {itemcode: 2, name: 'Little Women(Blu-Ray)', price:'400', image: 'http://www.impawards.com/2019/posters/little_women_ver16_xlg.jpg', quantity: 1}
       
       ]);
         const [cartlist, setCart] = useState([]);
@@ -47,7 +47,7 @@ function ItemList(props) {
 
                         <div className="card">
 
-                        <img src= {item.image} alt="TV" style={{width:'300px', height:'400px'}}></img>
+                        <img src= {item.image} alt="TV"></img>
                         <div className="container">
                         <h4><b>{item.name}</b></h4>
                         <p>₹{item.price}</p>
