@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import './items.css'
 
-function ItemList() {
+function ItemList(props) {
     
-        const [items, setItem] = useState([{itemcode: 0, name: 'TV', price: '80000', image: 'https://i.gadgets360cdn.com/products/large/oneplus-tv-q1-pro-800x552-1569512163.jpg?downsize=*:180&output-quality=80&output-format=webp' }, 
-        {itemcode: 1, name: 'Phone', price:'40000', image: 'https://i.gadgets360cdn.com/large/oneplus_9_pro_image_1616073743295.jpg?downsize=950:*&output-quality=80&output-format=webp'},
-        {itemcode: 2, name: 'Little Women(Blu-Ray)', price:'400', image: 'http://www.impawards.com/2019/posters/little_women_xlg.jpg'}
+        const [items, setItem] = useState([{itemcode: 0, name: 'TV', price: '80000', image: 'https://i.gadgets360cdn.com/products/large/oneplus-tv-q1-pro-800x552-1569512163.jpg?downsize=*:180&output-quality=80&output-format=webp', quantity: 1 }, 
+        {itemcode: 1, name: 'Phone', price:'40000', image: 'https://i.gadgets360cdn.com/large/oneplus_9_pro_image_1616073743295.jpg?downsize=950:*&output-quality=80&output-format=webp', quantity: 1},
+        {itemcode: 2, name: 'Little Women(Blu-Ray)', price:'400', image: 'http://www.impawards.com/2019/posters/little_women_xlg.jpg', quantity: 1}
       
       ]);
         const [cartlist, setCart] = useState([]);
@@ -14,6 +14,7 @@ function ItemList() {
             let name = items[index].name;
             let price = items[index].price;
             let itemcode = items[index].itemcode;
+            let quantity = items[index].quantity;
             let item = localStorage.getItem("cartlist");
             let arr;
             item === null ? arr = cartlist : arr = JSON.parse(item);
@@ -25,11 +26,14 @@ function ItemList() {
             
             arr.push({name: name,
               price: price,
-              itemcode: itemcode}
+              itemcode: itemcode,
+              quantity: quantity}
             );
             setCart(arr);
             localStorage.setItem("cartlist", JSON.stringify(arr));
             alert(`${name} added to the cart`);
+            props.cartFun(arr.length);
+            // this.props.setCount(arr.length);
         }
 
         return (

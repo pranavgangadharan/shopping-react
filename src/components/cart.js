@@ -2,18 +2,21 @@ import React, {useState} from 'react'
 import './cart.css'
 import {Link} from 'react-router-dom'
 
-    function Example() {
+    function Example(props) {
         
         const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cartlist")));
+
 
         function sum() {
           let sum = 0;
           for(let i = 0; i < cart.length; i++) {
-              sum = sum + parseFloat(cart[i].price);
+              sum = sum + parseInt(cart[i].quantity) * parseFloat(cart[i].price);
           }
           console.log(sum);
           return sum;
         }
+
+
         function remove(index) {
           let key = index;
           console.log(key);
@@ -22,7 +25,27 @@ import {Link} from 'react-router-dom'
           console.log(item);
           localStorage.setItem("cartlist", JSON.stringify(item));
           setCart(item);
+          props.cartFun(item.length);
         }
+        
+
+        function changeQuantity(index, op) {
+          let item = JSON.parse(localStorage.getItem("cartlist"));
+          let qty = item[index].quantity;
+          if(qty >= 1) {
+            if(op === '+') {
+              qty = qty + 1;
+            }
+            if(op === '-' && qty !== 1) {
+              qty = qty -1;
+            }
+          }
+          item[index].quantity = qty;
+          localStorage.setItem("cartlist", JSON.stringify(item));
+          setCart(item);
+          }
+
+        
 
        
       
@@ -39,7 +62,12 @@ import {Link} from 'react-router-dom'
                         <b>{item.name}</b>
                         </td>
                         <td>
-                        <p>₹{item.price}</p>
+                        ₹{item.price}
+                        </td>
+                        <td>
+                          <button onClick={() => changeQuantity(index, '-')} className='qty'>-</button>
+                          <b>{item.quantity}</b>
+                          <button onClick={() => changeQuantity(index, '+')} className='qty'>+</button>
                         </td>
                         <td>
                           <button id="remove" className="button button2" onClick={() => remove(index)}>Remove from Cart</button>
